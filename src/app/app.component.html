@@ -1,7 +1,10 @@
 <div class="main">
   <h1>My To Do List</h1>
   <ul>
-    <input class="lg-text-input" #campoNovoItem />
+    <input class="lg-text-input" #campoNovoItem 
+    (keydown.enter)="CREATE_tarefa(campoNovoItem.value)"
+    (keydown.enter)="campoNovoItem.value = ''"/>
+
     <button
       class="btn-primary"
       (click)="CREATE_tarefa(campoNovoItem.value)"
@@ -10,9 +13,7 @@
       Adicionar Tarefa
     </button>
     <li *ngFor="let tarefaDoLoop of arrayDeTarefas">
-      {{ tarefaDoLoop.descricao }}
-      -
-      {{ tarefaDoLoop.statusRealizada }}
+      <app-item [tarefa]="tarefaDoLoop"></app-item>
     </li>
   </ul>
 </div>
